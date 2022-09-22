@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./first-component.component.css']
 })
 export class FirstComponentComponent implements OnInit {
+
+  class = ["class"];
   
   name: string = 'William'; // estamos explicitando o tipo string
   age: number = 30;

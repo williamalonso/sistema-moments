@@ -10,6 +10,7 @@ export class DirectivesComponent implements OnInit {
   font = 'Arial';
   color = 'red';
 
+  class = ["class"];
   classes = ["green-title", "small-title", "underline-title"];
   underline = ["underline-title"];
 
