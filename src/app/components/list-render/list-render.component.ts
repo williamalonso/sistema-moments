@@ -31,6 +31,7 @@ export class ListRenderComponent implements OnInit {
 
   removeAnimal(animal: Animal) {
     console.log("removendo animal...");
+    console.log(animal);
     this.animals = this.listService.remove(this.animals, animal);
   }
 
