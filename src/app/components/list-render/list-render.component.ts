@@ -27,9 +27,8 @@ export class ListRenderComponent implements OnInit {
   }
 
   removeAnimal(animal: Animal) {
-    console.log("removendo animal...");
-    console.log(animal);
-    this.animals = this.listService.remove(this.animals, animal);
+    this.animals = this.animals.filter( (i) => animal.name != i.name ); // esse filter percorre todos os animais do meu objeto. O "animal.name" vem do evento click do html. O filter então verifica se eu possuo algum objeto com o nome igual ao que veio do html. Se tiver algum igual, ele remove, se forem diferentes eles ficam.
+    this.listService.remove(animal.id).subscribe(); // aqui removemos os itens do nosso arquivo 'db.json'. O "subscribe" aqui é só a invocação, pois é a maneira do angular dizer que o evento foi executado.
   }
 
   getAnimals(){
