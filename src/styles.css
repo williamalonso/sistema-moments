@@ -1,13 +1,18 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: Helvetica;
+    font-family: Cambria;
+    box-sizing: border-box;
+    color: #444;
 }
-body {
-    padding-bottom: 500px;
+a {
+    text-decoration: none;
+    color: #444;
+    transition: .4s;
 }
-.class {
-    border-bottom: 1px solid red;
-    padding: 2em;
-    margin-bottom: 1em;
+a:hover {
+    color: #dec129;
+}
+.container {
+    background-color: red;
 }
