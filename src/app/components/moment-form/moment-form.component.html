@@ -1,16 +1,48 @@
-<form>
+<!-- o (ngSubmit) ativa o método "submit()" quando eu enviar o formulário -->
+
+<!-- o [formGroup] é uma declaração de grupo de formulário para o Angular conseguir mapear os inputs e disparar validações. O "momentForm" se refere ao nome do formulário -->
+
+<!-- o "#formDir" é para informar ao Angular "qual" ou "aonde" é meu formulário. Ele vai entender que isso é um formulário e vai conseguir mapear quando eu der o Submit -->
+
+
+
+<form (ngSubmit)="submit()" [formGroup]="momentForm" #formDir="ngForm">
     <div [ngClass]="formGroup">
         <label for="title">Título:</label>
-        <input type="text" placeholder="Coloque um título" required />
+
+        <!-- o "formControlName" é para dar o nome do atributo para o formulário -->
+        <input type="text" placeholder="Coloque um título" formControlName="title" required />
+
+        <div *ngIf="title.invalid && formDir.submitted" [ngClass]="validationError"> <!-- essa div vai ser disparada quando o título do input acima for inválido e quando o formDir for enviado -->
+
+            <!--
+                Nós só temos uma validação no input que é a "required" mas se tivesse outra validação, ele ia disparar essa mensagem abaixo pois não especificamos a validação para o tipo "required".
+                Como queremos especificar essa mensagem para a validação do tipo "required" nós fazemos:
+                                    *ngIf="title.errors?.['required']"
+                A interrogação é para dizer que é opcional, pois pode acontecer do input não ser preenchido.
+
+                Se a gente tivesse uma validação de maxlength, teríamos:
+                                    *ngIf="title.erros?.['maxlength']"
+            -->
+            <p *ngIf="title.errors?.['required']">O título é obrigatório</p>
+
+        </div>
     </div>
+
     <div [ngClass]="formGroup">
         <label for="description">Descrição:</label>
-        <textarea placeholder="O que aconteceu lá?" required></textarea>
+        <textarea placeholder="O que aconteceu lá?" formControlName="description" required></textarea>
+        <div *ngIf="description.invalid && formDir.submitted" [ngClass]="validationError">
+            <p *ngIf="description.errors?.['required']">A descrição é obrigatória</p>
+        </div>
     </div>
+
     <div [ngClass]="formGroup">
         <label for="image">Coloque a foto que mais marcou:</label>
         <input type="file">
     </div>
+
     <!-- O texto do botão abaixo pode ser "criar" ou "editar" então usamos o value dinâmico -->
     <input type="submit" value="{{ btnText }}">
+
 </form>
