@@ -1,0 +1,16 @@
+<form>
+    <div [ngClass]="formGroup">
+        <label for="title">Título:</label>
+        <input type="text" placeholder="Coloque um título" required />
+    </div>
+    <div [ngClass]="formGroup">
+        <label for="description">Descrição:</label>
+        <textarea placeholder="O que aconteceu lá?" required></textarea>
+    </div>
+    <div [ngClass]="formGroup">
+        <label for="image">Coloque a foto que mais marcou:</label>
+        <input type="file">
+    </div>
+    <!-- O texto do botão abaixo pode ser "criar" ou "editar" então usamos o value dinâmico -->
+    <input type="submit" value="{{ btnText }}">
+</form>
