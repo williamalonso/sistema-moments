@@ -1,2 +1,7 @@
 <h2>Compartilhe o seu <span>Momento</span>!</h2>
-<app-moment-form [btnText]="btnValue"></app-moment-form>
+
+<!-- a tag <app-moment-form> chama o componente "moment-form" e insere aqui no html -->
+<!-- o [btnText] é o nome da variável que foi passada para o componente "moment-form" (componente filho) -->
+<!-- o "btnValue" é o nome da variável criada no "new-moment.ts" (componente pai) -->
+<!-- o (onSubmit) está vindo do filho "moment-form" e o "createhandler" é um método no componente pai "new-moment" -->
+<app-moment-form [btnText]="btnValue" (onSubmit)="createHandler($event)"></app-moment-form>

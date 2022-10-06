@@ -39,7 +39,9 @@
 
     <div [ngClass]="formGroup">
         <label for="image">Coloque a foto que mais marcou:</label>
-        <input type="file">
+        
+        <!-- o evento change vai ativar o método "onFileSelected" e esse método passa o evento como argumento  -->
+        <input type="file" (change)="onFileSelected($event)">
     </div>
 
     <!-- O texto do botão abaixo pode ser "criar" ou "editar" então usamos o value dinâmico -->

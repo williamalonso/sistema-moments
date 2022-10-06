@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Moment } from 'src/app/interfaces/Moment';
 
 
 @Component({
@@ -9,7 +10,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class MomentFormComponent implements OnInit {
 
-  @Input() btnText!: string;
+  // estamos emitindo o evento "onSubmi" para o componente pai "new-moment". O <Moment> é a interface
+  @Output() onSubmit = new EventEmitter<Moment>();
+
+  @Input() btnText!: string; // esse btnText vem do componente 'pai' chamado "new-moment"
 
   momentForm!: FormGroup // Essa declaração é para usar o [formGroup] no html.
 
@@ -39,12 +43,22 @@ export class MomentFormComponent implements OnInit {
     return this.momentForm.get('description')!; // a exclamação no final é para confirmar ao Angular que esse dado vai existir
   }
 
+  // Essa função joga a imagem para o "momentForm"
+  onFileSelected(event: any) {
+    // vou pegar o arquivo do input
+    const file: File = event.target.files[0];
+    this.momentForm.patchValue({image: file});
+
+  }
+
   submit() {
 
     if(this.momentForm.invalid) { // se o meu formulário for inválido (campos vazios), eu não deixo ele terminar o Submit. Dessa forma, o console.log abaixo não é exibido.
       return;
     }
-    console.log("Enviou o formulário");
+    // console.log(this.momentForm.value);
+
+    this.onSubmit.emit(this.momentForm.value); // estou enviando os dados do form para o componente pai "new-moment"
   }
 
 }
