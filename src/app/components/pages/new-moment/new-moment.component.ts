@@ -18,13 +18,13 @@ export class NewMomentComponent implements OnInit {
 
   // como vamos ter operações assíncronas com a API, então fazemos o "async"
   async createHandler(event: Moment) {
-    console.log(event);
-    // estamos recebendo um objeto do form, mas precisamos transformá-lo em FormData que é uma estrutura de formulário padrão de envio. 
+
+    // estamos recebendo um objeto com os dados do form, mas precisamos transformá-lo em FormData que é uma estrutura de formulário padrão de envio. 
     // O FormData é do javascript então não precisamos importar nada
     const formData = new FormData();
     formData.append('title', event.title);
     formData.append('description', event.image);
-    if(event.image) {
+    if(event.image) { // se existir a imagem
       formData.append('image', event.image);
     }
 

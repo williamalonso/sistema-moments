@@ -14,14 +14,15 @@
         <input type="text" placeholder="Coloque um título" formControlName="title" required />
 
         <div *ngIf="title.invalid && formDir.submitted" [ngClass]="validationError"> <!-- essa div vai ser disparada quando o título do input acima for inválido e quando o formDir for enviado -->
+            <!-- Para esse *ngIf="title.invalid" funcionar, foi criada a função "get title()"  -->
 
             <!--
-                Nós só temos uma validação no input que é a "required" mas se tivesse outra validação, ele ia disparar essa mensagem abaixo pois não especificamos a validação para o tipo "required".
+                Nós só temos uma validação no input que é a "required", mas se tivesse outra validação ele ia disparar a mensagem abaixo para qualquer outro tipo de erro, pois não especificamos a validação para o tipo "required".
                 Como queremos especificar essa mensagem para a validação do tipo "required" nós fazemos:
                                     *ngIf="title.errors?.['required']"
                 A interrogação é para dizer que é opcional, pois pode acontecer do input não ser preenchido.
 
-                Se a gente tivesse uma validação de maxlength, teríamos:
+                Se a gente tivesse uma validação de maxlength por exemplo, teríamos:
                                     *ngIf="title.erros?.['maxlength']"
             -->
             <p *ngIf="title.errors?.['required']">O título é obrigatório</p>
@@ -44,7 +45,7 @@
         <input type="file" (change)="onFileSelected($event)">
     </div>
 
-    <!-- O texto do botão abaixo pode ser "criar" ou "editar" então usamos o value dinâmico -->
+    <!-- O texto do botão abaixo pode ser "criar" ou "editar", etc. Então usamos o value dinâmico (vem do componente pai) -->
     <input type="submit" value="{{ btnText }}">
 
 </form>
