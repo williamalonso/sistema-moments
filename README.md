@@ -32,8 +32,9 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ### ✨ Sobre a construção do projeto:
 
+- O sistema está consumindo [esta API](https://github.com/matheusbattisti/curso_adonis_api_yt) construída no AdonisJS
 - A página inicial lista seus momentos com fotos e vídeos;
-- É possível cadastrar novos momento;
+- É possível cadastrar novos momentos;
 - Há validação de dados no formulário;
 - Há sistema de mensageria;
 
@@ -53,5 +54,8 @@ Caso queira, clone ou faça o downlod desse repositório:
 $ git clone git@github.com:williamalonso/sistema-moments.git
 ```
 Após baixar ou clonar, rode o comando `npm i`.
+
+Para a aplicação funcionar é necessário baixar também a API utilizada [clicando aqui](https://github.com/matheusbattisti/curso_adonis_api_yt)
+
 
 <h3 align="center">William Alonso</h3>
