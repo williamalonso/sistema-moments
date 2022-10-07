@@ -37,7 +37,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - É possível cadastrar novos momentos;
 - Há validação de dados no formulário;
 - Há sistema de mensageria;
-
+- Há campo de busca;
 
 ---
 
@@ -57,5 +57,6 @@ Após baixar ou clonar, rode o comando `npm i`.
 
 Para a aplicação funcionar é necessário baixar também a API utilizada [clicando aqui](https://github.com/matheusbattisti/curso_adonis_api_yt)
 
+Para rodar a API, dê o comando `node ace serve`
 
 <h3 align="center">William Alonso</h3>
