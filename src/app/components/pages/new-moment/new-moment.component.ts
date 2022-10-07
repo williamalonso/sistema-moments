@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Moment } from 'src/app/interfaces/Moment'; // importando a interface
 import { MomentService } from 'src/app/services/moment/moment.service';
+import { MessagesService } from 'src/app/services/messages/messages.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-moment',
@@ -11,7 +13,11 @@ export class NewMomentComponent implements OnInit {
 
   btnValue = "Compartilhar!";
 
-  constructor(private momentService: MomentService) { }
+  constructor(
+    private momentService: MomentService,
+    private messagesService: MessagesService, // inicializando serviço de mensageria para usar a função "messagesService.add()". Essa função foi definida no arquivo "messages.service.ts"
+    private router: Router // inicializando serviço que permite usar funções de router como "router.navigate()"
+  ) { }
 
   ngOnInit(): void {
   }
@@ -32,8 +38,18 @@ export class NewMomentComponent implements OnInit {
     await this.momentService.createMoment(formData).subscribe();
 
     // exibir msg de sucesso (mensageria)
-    
+    this.messagesService.add("Momento adicionado com sucesso!");
+
     // redirecionar user para outra página após enviar o form
+    this.router.navigate(['/']);
+
+    // Outra forma de escrever os comendos acima:
+    // this.momentService.createMoment(formData).subscribe({
+    //   next: () => {
+    //     this.messagesService.add("Momento adicionado com sucesso!");
+    //     this.router.navigate(['/']);
+    //   }
+    // });
 
   }
 

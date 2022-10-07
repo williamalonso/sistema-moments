@@ -1,0 +1,11 @@
+<!-- O *ngIf verifica se há mensagem lá no arquivo "messages.service.ts". Se existir, ele exibe. Se não existe, ele não exibe -->
+
+<div [ngClass]="message" *ngIf="messagesService.message">
+    <div [ngClass]="messageHeader">
+        <h2>Mensagem do Sistema:</h2>
+        <button [ngClass]="clear" (click)="messagesService.clear()">
+            <fa-icon [icon]="faTimes"></fa-icon>
+        </button>
+    </div>
+    <p>{{ messagesService.message }}</p>
+</div>
