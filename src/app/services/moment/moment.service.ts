@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Moment  } from 'src/app/interfaces/Moment'; // importando a interface
+import { Moment } from 'src/app/interfaces/Moment'; // importando a interface
+import { Response } from 'src/app/interfaces/Response'; // importando a interface Response para criar o método "getMoments()"
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -14,9 +15,15 @@ export class MomentService {
 
   constructor(private http: HttpClient) { }
 
+  // cria o dado no Backend
   createMoment(formData: FormData): Observable<FormData> {
     // como estamos criando dados para salvar no backend, usamos o verbo "http.post"
     return this.http.post<FormData>(this.apiUrl, formData);
   }
+
+  // traz todos os momentos (select * from...)
+  getMoments(): Observable<Response<Moment[]>> { // Aqui estamos dizendo que vamos receber uma resposta (Response) que vai conter um array de Moment
+    return this.http.get<Response<Moment[]>>(this.apiUrl); // verbo get para trazer os dados
+  } 
 
 }

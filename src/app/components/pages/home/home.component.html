@@ -1,1 +1,6 @@
-<p>Página Home</p>
+<div>
+    <h1>Veja o que estão compartilhando</h1>
+    <div *ngFor="let moment of allMoments">
+        <p>Nome: {{ moment.title }}</p>
+    </div>
+</div>
