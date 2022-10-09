@@ -11,6 +11,12 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'; // importando para
 })
 export class HomeComponent implements OnInit {
 
+  // ngClass
+  homeContainer = ["home-container"];
+  momentsContainer = ["moments-container"];
+  momentClass = ["moment"];
+  date = ["date"];
+
   // array para pegar os Momentos do Banco
   allMoments: Moment[] = [];
 
@@ -31,7 +37,7 @@ export class HomeComponent implements OnInit {
       //console.log(items);
       const data = items.data;
       data.map( (item) => {
-        item.created_at = new Date(item.created_at!).toLocaleDateString('pt-BR'); // Formatando a data antes de adicionar em nosso sistema. O "!" aqui é porque lá na Interface nós usamos o "?"
+        item.created_at = new Date(item.created_at!).toLocaleDateString('pt-BR'); // Formatando a data antes de adicionar em nosso sistema. A "!" é para informar que o dado vai existir, pois lá na interface nós colocamos "?" (informando que é opcional).
       })
       this.allMoments = data // insere os dados do back em nosso array
       this.moments = data;

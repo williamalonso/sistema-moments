@@ -1,6 +1,19 @@
-<div>
+<div [ngClass]="homeContainer">
     <h1>Veja o que estão compartilhando</h1>
-    <div *ngFor="let moment of allMoments">
-        <p>Nome: {{ moment.title }}</p>
+    <div *ngIf="moments.length > 0; else noMoments"> <!-- Se existir algum dado exibe, se não informa que não existe -->
+        <div [ngClass]="momentsContainer">
+            <div *ngFor="let moment of moments" [ngClass]="momentClass">
+                <!-- carregar imagem da API -->
+                <img src="{{ baseApiURL }}uploads/{{ moment.image }}" alt="{{ moment.title }}">
+                <!-- exibir nome -->
+                <h3>Nome: {{ moment.title }}</h3>
+                <p [ngClass]="date">Em: {{ moment.created_at }}</p>
+                <p>Comentários: {{ moment.comments!.length }}</p> <!-- A "!" é para informar que o dado vai existir, pois lá na interface nós colocamos "?" (informando que é opcional) -->
+                <p><a routerLink="moments/{{ moment.id }}">Detalhes</a></p>
+            </div>
+        </div>
     </div>
+    <ng-template #noMoments>
+        <h1>Não há Momentos cadastrados!</h1>
+    </ng-template>
 </div>
