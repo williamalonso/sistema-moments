@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   momentsContainer = ["moments-container"];
   momentClass = ["moment"];
   date = ["date"];
+  searchContainer = ["search-container"];
 
   // array para pegar os Momentos do Banco
   allMoments: Moment[] = [];
@@ -46,5 +47,16 @@ export class HomeComponent implements OnInit {
   }
 
   // Faz a pesquisa no campo de Busca
+  faSearch = faSearch // para ter acesso ao icone da Lupa
+  searchTerm: string = '';
+  search(e: Event): void { // aqui estamos usando o Event pois ele está derivando de um evento lá no input do html
+
+    const target = e.target as HTMLInputElement; // pegamos o html que está sendo exibido em nosso input
+    const value = target.value;
+
+    this.moments = this.allMoments.filter( (moment) => { // vamos filtar o allMoments
+      return moment.title.toLowerCase().includes(value); // O 'lower case' é para deixar tudo em minúsculo. O 'includes' verifica se meu texto contém outro texto, no caso, o "value" que veio do input html
+    })
+  }
 
 }
