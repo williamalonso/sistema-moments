@@ -32,4 +32,9 @@ export class MomentService {
     return this.http.get<Response<Moment>>(url); // procura pela url informada
   }
 
+  removeMoment(id: number) {
+    const url = `${this.apiUrl}/${id}`; // url com id de um item específico do Banco
+    return this.http.delete(url); // procura pela url informada
+  }
+
 }
