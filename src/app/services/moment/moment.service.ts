@@ -24,6 +24,12 @@ export class MomentService {
   // traz todos os momentos (select * from...)
   getMoments(): Observable<Response<Moment[]>> { // Aqui estamos dizendo que vamos receber uma resposta (Response) que vai conter um array de Moment
     return this.http.get<Response<Moment[]>>(this.apiUrl); // verbo get para trazer os dados
-  } 
+  }
+
+  // método individual para um id do Banco. Equivalente à página que traz os dados de um id do CRUD
+  getMoment(id: number): Observable<Response<Moment>> { // mesma declaração da função getMomentS mas sem o "[]"
+    const url = `${this.apiUrl}/${id}`; // url com id de cada item da home page
+    return this.http.get<Response<Moment>>(url); // procura pela url informada
+  }
 
 }
