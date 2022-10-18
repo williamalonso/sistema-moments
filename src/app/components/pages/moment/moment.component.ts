@@ -46,7 +46,7 @@ export class MomentComponent implements OnInit {
         //console.log(item.data);
         this.moment = item.data // atribui os dados do backend para a variável 'moment'
         //console.log(this.moment);
-      });
+    });
   }
 
   async removeHandler(id: number) {

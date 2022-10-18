@@ -14,8 +14,10 @@ export class MomentFormComponent implements OnInit {
   @Output() onSubmit = new EventEmitter<Moment>();
 
   @Input() btnText!: string; // esse btnText vem do componente 'pai' chamado "new-moment"
+  @Input() momentData: Moment | null = null; // estamos declarando essa variável e seu valor vem do componente Pai "edi-moment.component.ts". Ele é do tipo "Moment" ou "null" pois nem sempre vou ter ele. Além disso, seu valor é iniciado com null também.
 
   momentForm!: FormGroup // Essa declaração é para usar o [formGroup] no html.
+  
 
   // ngClass
   formGroup = ["form-group"];
