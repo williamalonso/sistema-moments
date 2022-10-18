@@ -34,7 +34,12 @@ export class MomentService {
 
   removeMoment(id: number) {
     const url = `${this.apiUrl}/${id}`; // url com id de um item específico do Banco
-    return this.http.delete(url); // procura pela url informada
+    return this.http.delete(url); // procura pela url informada e deleta o item de acordo com o id
+  }
+
+  updateMoment(id: number, formData: FormData): Observable<FormData> { // aqui a função recebe os dados do Form, e ele optou por passar o id separado
+    const url = `${this.apiUrl}/${id}`; // url com id do meu item
+    return this.http.put<FormData>(url, formData); // além da url, enviamos nossos dados do Form para esse método put()
   }
 
 }

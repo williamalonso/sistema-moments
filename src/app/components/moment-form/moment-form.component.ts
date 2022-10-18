@@ -31,9 +31,12 @@ export class MomentFormComponent implements OnInit {
     this.momentForm = new FormGroup({
 
       // Os campos aqui estão vazios, mas quando os dados vierem, eles vão ser preenchidos.
-      id: new FormControl(''),
-      title: new FormControl('', [Validators.required]), // aqui está especificando que o "title" é obrigatório
-      description: new FormControl('', [Validators.required]), // aqui está especificando que o "description" é obrigatório
+      id: new FormControl( this.momentData ? this.momentData.id : ''), // aqui estamos usando operador ternário para verificar se o dado já existe vindo de algum componente. Se existir, é exibido, se não existir o form fica com value vazio.
+
+      title: new FormControl( this.momentData ? this.momentData.title : '', [Validators.required] ), // O "[Validators.required" está especificando que o "title" é obrigatório
+      
+      description: new FormControl( this.momentData ? this.momentData.description : '', [Validators.required]), 
+
       image: new FormControl('')
 
     })

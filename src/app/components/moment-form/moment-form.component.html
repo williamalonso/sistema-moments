@@ -7,6 +7,7 @@
 
 
 <form (ngSubmit)="submit()" [formGroup]="momentForm" #formDir="ngForm">
+    <input type="hidden" formControlName="id"> <!-- esse hidden é pq ele serve apenas para guardar o id na hora de editar os dados e enviar para o backend -->
     <div [ngClass]="formGroup">
         <label for="title">Título:</label>
 

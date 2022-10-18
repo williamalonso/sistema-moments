@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Moment } from 'src/app/interfaces/Moment';
+import { MessagesService } from 'src/app/services/messages/messages.service';
 import { MomentService } from 'src/app/services/moment/moment.service';
 
 @Component({
@@ -15,7 +16,9 @@ export class EditMomentComponent implements OnInit {
 
   constructor( 
     private momentService: MomentService, // inicializando nosso service "MomentService"
-    private route: ActivatedRoute // O ActivatedRoute é para trazer o id para usar no ngOnInit
+    private route: ActivatedRoute, // O ActivatedRoute é para trazer o id para usar no ngOnInit
+    private messagesService: MessagesService, // ativando serviço de mensageria
+    private router: Router // serviço de rotas
   ) { }
 
   ngOnInit(): void {
@@ -27,7 +30,27 @@ export class EditMomentComponent implements OnInit {
       this.moment = item.data // atribui os dados do backend para a variável 'moment'
       //console.log(this.moment);
 
-  });
+    });
+  }
+
+  async editHandler(momentData: Moment) { // O "async" é para remover erro lá no "await"
+
+    const id = this.moment.id; // pega o id do meu 'moment'
+
+    const formData = new FormData(); // mesmo procedimento do 'new-moment.component.ts'
+    formData.append('title', momentData.title); // isso é para enviarmos os dados para o service
+    formData.append('description', momentData.description);
+    if(momentData.image) {
+      formData.append('image', momentData.image);
+    }
+
+    await this.momentService.updateMoment(id!, formData).subscribe(); // precisa colocar "!" para informar que o id vai existir.
+
+    // enviamos mensagem para usuário
+    this.messagesService.add(`Momento ${id} atualizado com sucesso!`);
+
+    // redireciona usuário
+    this.router.navigate(['/']);
   }
 
 }

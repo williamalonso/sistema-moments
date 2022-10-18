@@ -1,4 +1,4 @@
 <div *ngIf="moment">
     <h2>Editando o momento <span>{{ moment.title }}</span>!</h2>
-    <app-moment-form [momentData]="moment" [btnText]="btnText"></app-moment-form> <!-- o que está dentro de [] é a variável que será passada para o Filho. -->
+    <app-moment-form (onSubmit)="editHandler($event)" [momentData]="moment" [btnText]="btnText"></app-moment-form> <!-- O (onsubmit) está vindo co componente filho que é o "moment-form.component.ts" e o "editHandler()" é o método que vamos criar aqui pai 'edit-moment'. O que está dentro de [] é a variável que será passada para o Filho. -->
 </div>
