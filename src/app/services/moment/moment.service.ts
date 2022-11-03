@@ -27,7 +27,7 @@ export class MomentService {
   }
 
   // método individual para um id do Banco. Equivalente à página que traz os dados de um id do CRUD
-  getMoment(id: number): Observable<Response<Moment>> { // mesma declaração da função getMomentS mas sem o "[]"
+  getMoment(id: number): Observable<Response<Moment>> { // mesma declaração da função getMomentS mas sem o "[]" pois vai trazer somento 1 dado e não um array
     const url = `${this.apiUrl}/${id}`; // url com id de cada item da home page
     return this.http.get<Response<Moment>>(url); // procura pela url informada
   }
