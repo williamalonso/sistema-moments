@@ -76,8 +76,21 @@ export class MomentComponent implements OnInit {
   }
 
   // Essa função é acionada quando eu enviar o formulário de comentários na página Html
-  onSubmit(formDirective: FormGroupDirective) {
+  async onSubmit(formDirective: FormGroupDirective) {
+    // não deixa enviar o formulário se os campos estão vazios
+    if(this.commentForm.invalid) {
+      return;
+    }
 
+    const data: Comment = this.commentForm.value;
+    data.momentId = Number(this.moment!.id);
+
+    await this.commentService.createComment(data).subscribe( (x) => this.moment!.comments!.push(x.data) ); // adiciona os valores do formulário no backend e no frontend
+
+    this.messageService.add("Comentário adicionado!"); // adiciona mensagem para usuário
+
+    this.commentForm.reset(); // limpa o formulário do backend
+    formDirective.resetForm(); // reseta o formulário do frontend
   }
 
 }
