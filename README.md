@@ -38,6 +38,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - Há validação de dados no formulário;
 - Há sistema de mensageria;
 - Há campo de busca;
+- É possível adicionar comentários nas fotos
 
 ---
 
@@ -57,6 +58,12 @@ Após baixar ou clonar, rode o comando `npm i`.
 
 Para a aplicação funcionar é necessário baixar também a API utilizada [clicando aqui](https://github.com/matheusbattisti/curso_adonis_api_yt)
 
-Para rodar a API, dê o comando `node ace serve`
+Após baixar a API, rode o comando `npm i` e em seguida rode o comando `node ace generate:key`.
+
+Após isso, vá no arquivo `.env` e coloque a chave gerada acima no campo APP_KEY.
+
+Para rodar as migrations da API, rode o comando `node ace migration:run`.
+
+Por fim, para rodar a API, dê o comando `node ace serve`.
 
 <h3 align="center">William Alonso</h3>
